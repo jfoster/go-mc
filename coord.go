@@ -24,6 +24,10 @@ func (c Coord) AddX(x float64) Coord {
 	return c.Add(Coord{x, 0, 0})
 }
 
+func (c Coord) AddY(y float64) Coord {
+	return c.Add(Coord{0, y, 0})
+}
+
 func (c Coord) AddZ(z float64) Coord {
 	return c.Add(Coord{0, 0, z})
 }
