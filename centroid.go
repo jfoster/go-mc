@@ -4,7 +4,7 @@ import "math"
 
 type Centroid struct {
 	Coord
-	Coords []Coord
+	Coords
 }
 
 func CentroidOfCoords(coords ...Coord) (c Centroid) {

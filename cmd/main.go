@@ -7,12 +7,10 @@ import (
 )
 
 func main() {
-	coords := mc.Coords{
-		mc.Coord{-20936.0, 32.0, -20938.0},
-		mc.Coord{-21136.0, 32.0, -20992.0},
-	}
-
-	centroid := mc.CentroidOfCoords(coords...)
+	centroid := mc.CentroidOfCoords(
+		mc.Coord{X: -20936, Y: 32, Z: -20938},
+		mc.Coord{X: -21136, Y: 32, Z: -20992},
+	)
 
 	fmt.Println("Overworld:", centroid, "Nether:", centroid.Nether())
 

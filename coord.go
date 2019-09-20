@@ -40,5 +40,8 @@ func (c Coords) Less(i, j int) bool {
 	if c[i].X < c[j].X {
 		return true
 	}
+	if c[i].X > c[j].X {
+		return false
+	}
 	return c[i].Z < c[j].Z
 }
