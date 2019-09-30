@@ -1,4 +1,4 @@
-package mccoordtools
+package mccoordtool
 
 import "fmt"
 

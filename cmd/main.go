@@ -5,14 +5,14 @@ import (
 	"os"
 	"strconv"
 
-	mc "github.com/jfoster/mccoordtools"
+	mc "github.com/jfoster/mccoordtool"
 )
 
 func main() {
 	args := os.Args[1:]
 
 	if len(args) == 0 || len(args)%3 != 0 {
-		fmt.Println()
+		fmt.Println("Incorrect number of arguments!")
 		return
 	}
 
@@ -35,15 +35,16 @@ func main() {
 	centroid := mc.CentroidOfCoords(coords...)
 
 	fmt.Println("Overworld:", centroid, "Nether:", centroid.Nether())
-
 	fmt.Println("Distances:", centroid.Distances())
 
-	fmt.Println("N:", centroid.AddZ(-128))
-	fmt.Println("E:", centroid.AddX(128))
-	fmt.Println("S:", centroid.AddZ(128))
-	fmt.Println("W:", centroid.AddX(-128))
+	var radius float64 = 128
 
-	circle := mc.Circle(centroid.Coord, 257)
+	fmt.Println("N:", centroid.AddZ(-radius))
+	fmt.Println("E:", centroid.AddX(radius))
+	fmt.Println("S:", centroid.AddZ(radius))
+	fmt.Println("W:", centroid.AddX(-radius))
+
+	circle := mc.Circle(centroid.Coord, radius*2)
 	for i, v := range circle {
 		fmt.Println(i+1, v)
 	}

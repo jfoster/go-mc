@@ -1,3 +1,3 @@
-module github.com/jfoster/mccoordtools
+module github.com/jfoster/mccoordtool
 
 go 1.13
