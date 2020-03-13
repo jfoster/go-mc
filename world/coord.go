@@ -1,9 +1,7 @@
-package coord
+package world
 
 import (
 	"fmt"
-
-	"github.com/jfoster/mcutils/dimension"
 )
 
 type Coord struct {
@@ -11,11 +9,11 @@ type Coord struct {
 	Y float64
 	Z float64
 
-	Dimension dimension.Dimension
+	Dimension Dimension
 }
 
 func NewCoord(x float64, y float64, z float64) Coord {
-	return Coord{X: x, Y: y, Z: z, Dimension: dimension.Overworld}
+	return Coord{X: x, Y: y, Z: z, Dimension: Overworld}
 }
 
 func (c *Coord) Add(coord Coord) Coord {
@@ -35,10 +33,10 @@ func (c *Coord) AddZ(z float64) Coord {
 }
 
 func (c *Coord) Nether() Coord {
-	if c.Dimension == dimension.Nether {
+	if c.Dimension == Nether {
 		return *c
 	}
-	return Coord{c.X / 8, c.Y, c.Z / 8, dimension.Nether}
+	return Coord{c.X / 8, c.Y, c.Z / 8, Nether}
 }
 
 func (c Coord) String() string {

@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/jfoster/mcutils/centroid"
-	"github.com/jfoster/mcutils/circle"
-	"github.com/jfoster/mcutils/coord"
+	"github.com/jfoster/go-minecraft/world"
 )
 
 func main() {
@@ -22,7 +20,7 @@ func main() {
 		return
 	}
 
-	var coords coord.Coords
+	var coords world.Coords
 	var x, y, z float64
 
 	for i, v := range args {
@@ -34,11 +32,11 @@ func main() {
 		}
 		if i%3 == 2 {
 			z, _ = strconv.ParseFloat(v, 64)
-			coords = append(coords, coord.Coord{X: x, Y: y, Z: z})
+			coords = append(coords, world.Coord{X: x, Y: y, Z: z})
 		}
 	}
 
-	cent := centroid.CentroidOfCoords(coords...)
+	cent := world.CentroidOfCoords(coords...)
 
 	fmt.Println("Overworld:", cent.String(), "Nether:", cent.Nether().String())
 	fmt.Println("Distances:", cent.Distances())
@@ -49,7 +47,7 @@ func main() {
 		fmt.Println("S:", cent.AddZ(r))
 		fmt.Println("W:", cent.AddX(-r))
 
-		circle := circle.Circle(cent.Coord, r*2)
+		circle := world.Circle(cent.Coord, r*2)
 		for i, v := range circle {
 			fmt.Println(i+1, v)
 		}
