@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/alecthomas/kong"
-	version "github.com/jfoster/go-minecraft/version"
+	"github.com/jfoster/go-minecraft/version"
 )
 
 type context struct {

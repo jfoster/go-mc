@@ -1,4 +1,4 @@
-package mcversions
+package version
 
 import (
 	"encoding/json"
