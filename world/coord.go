@@ -1,6 +1,7 @@
 package world
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -12,8 +13,16 @@ type Coord struct {
 	Dimension Dimension
 }
 
-func NewCoord(x float64, y float64, z float64) Coord {
-	return Coord{X: x, Y: y, Z: z, Dimension: Overworld}
+func NewCoord(x float64, y float64, z float64) (*Coord, error) {
+	if y < 0 {
+		return nil, errors.New("y coordinate cannot be less than 0")
+	}
+
+	if y > 256 {
+		errors.New("y coordinate cannot be more than 256")
+	}
+
+	return &Coord{X: x, Y: y, Z: z, Dimension: Overworld}, nil
 }
 
 func (c *Coord) Add(coord Coord) Coord {

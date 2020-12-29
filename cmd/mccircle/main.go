@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"strconv"
+	"strings"
 
 	"github.com/jfoster/go-minecraft/world"
 )
@@ -13,9 +15,8 @@ func main() {
 
 	flag.Parse()
 	args := flag.Args()
-	fmt.Println(args)
 
-	if len(args) == 0 || len(args)%3 != 0 {
+	if len(args) == 0 {
 		fmt.Println("Incorrect number of arguments!")
 		return
 	}
@@ -23,16 +24,26 @@ func main() {
 	var coords world.Coords
 	var x, y, z float64
 
-	for i, v := range args {
-		if i%3 == 0 {
-			x, _ = strconv.ParseFloat(v, 64)
-		}
-		if i%3 == 1 {
-			y, _ = strconv.ParseFloat(v, 64)
-		}
-		if i%3 == 2 {
-			z, _ = strconv.ParseFloat(v, 64)
-			coords = append(coords, world.Coord{X: x, Y: y, Z: z})
+	for _, arg := range args {
+
+		split := strings.Split(arg, " ")
+
+		for i, v := range split {
+			if i%3 == 0 {
+				x, _ = strconv.ParseFloat(v, 64)
+			}
+			if i%3 == 1 {
+				y, _ = strconv.ParseFloat(v, 64)
+			}
+			if i%3 == 2 {
+				z, _ = strconv.ParseFloat(v, 64)
+
+				coord, err := world.NewCoord(x, y, z)
+				if err != nil {
+					log.Fatal(err)
+				}
+				coords = append(coords, *coord)
+			}
 		}
 	}
 
